@@ -3,7 +3,7 @@ pro rat_plot_13ch_4c_rev1,X1,Y1,$
 	dev=dev,ps_name=ps_name,ps_append=ps_append,$
 	xtit=xtit,ytit=ytit,tit=tit,xlabel=xlabel, leg=leg,$
 	colors=colors,ct=ct,xrange=xrange,yrange=yrange,lines=lines1,$
-	xmin=xmin,ymin=ymin,xtick=xtick,ytick=ytick
+	xmin=xmin,ymin=ymin,xtick=xtick,ytick=ytick,_extra=extra
 	
 ;
 ;
@@ -27,7 +27,7 @@ siz = size(Y)
 dim_row = siz(1)
 dim_col = siz(2)
 
-if (dim_col gt dim_row) then Y =transpose(Y)  ;Assume data has more points than channels
+;if (dim_col gt dim_row) then Y =transpose(Y)  ;Assume data has more points than channels
 siz = size(Y)
 n_ch = siz(2)
 
@@ -82,8 +82,8 @@ endif
 
 PLOT,X,Y(*,0),/nodata,/noerase,xtitle=xtit,ytitle=ytit,title=tit,$
 	xrange=xrange,yrange=yrange,xticks=xtick,yticks=ytick,$
-	xminor=xmin,yminor=ymin,xtickn=xlabel,/xstyle,/ystyle
-for i=0,n_ch-1 do oplot,x,y(*,i),color=colors(i),lines=lines1(i)
+	xminor=xmin,yminor=ymin,xtickn=xlabel,/xstyle,/ystyle, _extra=extra
+for i=0,n_ch-1 do oplot,x,y(*,i),color=colors(i),lines=lines1(i), _extra=extra
 
  legend,leg,colors=colors(0:n_ch-1),linestyle=lines1(0:n_ch-1)
 	

@@ -39,6 +39,8 @@ minval=dblarr(size_hist)
 maxval=dblarr(size_hist)
 std_dev=dblarr(size_hist)
 sum_squares=dblarr(size_hist)
+percentiles=list()
+empty_arr=[]
 
  for j = 0 , size_hist-1 do begin
    if (KEYWORD_SET(verbose)) then begin
@@ -47,7 +49,7 @@ sum_squares=dblarr(size_hist)
    PRINT ,'Latitude Midpoint :' ,lat_mid_arr[j]
    PRINT ,'Longitude Midpoint :' ,lon_mid_arr[j]
    endif
-  if(ri[j] ne ri[j+1]) then begin
+  if(ri[j] ne ri[j+1]) then begin ;data exists in the bin
 	   idx = ri[ri[j]:ri[j+1]-1]
 	   n_el=n_elements(idx)
 	   arr2= (array[idx] ^ 2.0d)
@@ -58,6 +60,7 @@ sum_squares=dblarr(size_hist)
 	   minval[j]= min(array[idx],/nan)
 	   maxval[j]= max(array[idx],/nan)
 	   sum_squares[j]= total(arr2 ,/nan ,/double)
+	   percentiles.add.cgpercentiles(array[idx])
 	   if(KEYWORD_SET(verbose)) then begin
 		  ; PRINT ,'Latitude Midpoint :' ,avg(lat[idx],/Nan)
 		  ; PRINT ,'Longitude Midpoint :' ,avg(lon[idx],/Nan)
@@ -66,7 +69,7 @@ sum_squares=dblarr(size_hist)
 		   	PRINT ,lat[ii],lon[ii],form='(2(F7.2,3x))'
 		   PRINT,'----------------------------------'
 	   endif
-   endif
+   endif else percentiles.add,empty_arr  ; no data in the bin
    endfor
 
 ;   rec.N = rebin(N , [ lat_div , lon_div ] )

@@ -1,9 +1,9 @@
 pro   rat_read_he4 ,filename , input_swath_name, var_list
 
-fid = EOS_SW_OPEN(filenmae,/READ)
+fid = EOS_SW_OPEN(filename,/READ)
 
 ;Get the number and names of swaths
-nswath = EOS_SW_INQSWATH(filenmae, swathlist)
+nswath = EOS_SW_INQSWATH(filename, swathlist)
 
 ;Convert single string to array of strings
 swath_names = STRSPLIT(swathlist,',',/extract)
