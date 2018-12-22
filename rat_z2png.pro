@@ -1,9 +1,10 @@
-pro rat_z2png , fname , nodelete=nodelete
+pro rat_z2png , fname , nodelete=nodelete , verbose=verbose
 np=n_params()
 if(np eq 0) then fname='idl.png'
 thisDev=!D.NAME
 if(thisDev ne 'Z') then begin
-		message,'Current Device Not Z BUffer'
+		print,'WARNING : Current Device Not Z BUffer'
+		return
 endif
 if(file_test(fname) eq 1) then begin
 	print,'%%% WARNING :'+ fname+' already exists'

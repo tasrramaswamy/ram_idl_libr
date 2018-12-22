@@ -5,7 +5,8 @@ pro rat_colorbar3,_extra=_extra,position=position,ncolors=ncolors,$
 	low_color = low_color , high_color=high_color,$
 	divisions=divisions,stop1=stop1
 
-low_color = 0  &  high_color=ncolors-1
+if (n_elements(low_color) eq 0) then low_color = 0  
+if (n_elements(high_color) eq 0) then  high_color=ncolors-1
 ;ncolors=ncolors-2
 ;if(KEYWORD_SET(divisions)) then divisions=divisions-2
 colorbar_fan,_extra=_extra,position=position,ncolors=ncolors,$

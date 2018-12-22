@@ -58,6 +58,8 @@ end
 2: begin
 	set_plot,'Z'
 	if (KEYWORD_SET(ct) eq 0) then ct =39
+	x_size = 1000
+	y_size = 600
 	device,set_resolution=[x_size,y_size]
 	loadct,ct
 	end

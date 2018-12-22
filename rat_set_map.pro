@@ -8,7 +8,7 @@ pro rat_set_map,xsize=xsize,ysize=ysize,charsize=charsize,ct=ct,$
 
 	case dev of 
 		'Z':	begin
-				device,set_resolution=[w_xsiz,w_ysiz]
+				device,set_resolution=[xsize,ysize]
 				xst=0.15 & yst=0.1
 
 				end

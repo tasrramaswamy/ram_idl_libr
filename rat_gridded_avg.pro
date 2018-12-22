@@ -60,7 +60,7 @@ empty_arr=[]
 	   minval[j]= min(array[idx],/nan)
 	   maxval[j]= max(array[idx],/nan)
 	   sum_squares[j]= total(arr2 ,/nan ,/double)
-	   percentiles.add.cgpercentiles(array[idx])
+	   percentiles.add, cgpercentiles(array[idx])
 	   if(KEYWORD_SET(verbose)) then begin
 		  ; PRINT ,'Latitude Midpoint :' ,avg(lat[idx],/Nan)
 		  ; PRINT ,'Longitude Midpoint :' ,avg(lon[idx],/Nan)
